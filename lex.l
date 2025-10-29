@@ -1,5 +1,6 @@
 %option noyywrap
-
+%option yyerror
+%option yylineno
 
 /* librerias importadas */
 %{
@@ -14,15 +15,17 @@
 }%
 
 
+
 /* que existe en nuestro compilador */
-COMIENZO            "utn"
+COMIENZO            "utn"   /*son literales si son de esta manera*/
 DIGITO              [0-9]
 LETRA               [a-zA-Z]
 GUIONES             [-_]
 CHAR_COMA           [","]
-CHAR_PUNTO          ["."] /*NUESTRO PUNTO Y COMA XDDDDDD*/
+FIN_SENTENCIA       ["."] /*NUESTRO PUNTO Y COMA XDDDDDD*/
 CHAR_DOS_PUNTOS     [":"]
-FIN                 "miutn"
+FIN_PROGRAMA        "miutn"
+
 
 /* operadores */
 PARENTESIS_A        [")"]
@@ -32,7 +35,15 @@ SUMA                ["+"]
 MENOS               ["-"]
 DIVISION            ["/"]
 
+
 /*comparativos*/
+COMP_MENOR          ["<"]
+COMP_MAYOR          [">"]
+COMP_MAYOR_IGUAL    ">=" 
+COMP_MENOR_IGUAL    "<="
+COMP_IGUAL          "=="
+COMP_DISTINTO       "!="
+
 
 
 /* nuestros ids*/
