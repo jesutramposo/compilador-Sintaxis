@@ -1,5 +1,4 @@
 %option noyywrap
-%option yyerror
 %option yylineno
 
 /* librerias importadas */
@@ -9,14 +8,15 @@
     #include <string.h>
     #include "y.tab.h"
 
-    void yyerror (char const *s){
-        fprintf (stderror, "%s\n", s)
+   int yyerror(const char *s) {
+        fprintf(stderr, "Linea %d: %s\n", yylineno, s);
+        return 0;
     }
 }%
 
 
 
-/* que existe en nuestro compilador */
+/* DEFINICIONES que existe en nuestro compilador */
 COMIENZO            "utn"   /*son literales si son de esta manera*/
 DIGITO              [0-9]
 LETRA               [a-zA-Z]
@@ -57,7 +57,7 @@ CONST_FLOAT                    {DIGITO}{0,8}{CHAR_COMA}{DIGITO}{1,8}
 
 
 
-/* tokens (hay que ver como podemos ingresar utn para que empience)*/
+/*reglas*/
 %%
 
 
